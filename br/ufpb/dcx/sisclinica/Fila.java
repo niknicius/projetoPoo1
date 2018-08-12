@@ -1,3 +1,5 @@
+package br.ufpb.dcx.sisclinica;
+
 import java.util.ArrayList;
 
 public class Fila {

@@ -1,4 +1,4 @@
-package projetoPoo1;
+package br.ufpb.dcx.sisclinica;
 public class Paciente {
 	private String nome;
 	private String raca;

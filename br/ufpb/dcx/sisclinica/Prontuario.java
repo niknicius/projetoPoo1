@@ -1,4 +1,4 @@
-package projetoPoo1;
+package br.ufpb.dcx.sisclinica;
 import java.util.List;
 import java.util.ArrayList;
 

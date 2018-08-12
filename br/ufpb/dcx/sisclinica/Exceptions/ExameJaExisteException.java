@@ -1,6 +1,6 @@
 /*
  */
-package br.ufpb.dcx;
+package br.ufpb.dcx.sisclinica.Exceptions;
 
 /**
  *

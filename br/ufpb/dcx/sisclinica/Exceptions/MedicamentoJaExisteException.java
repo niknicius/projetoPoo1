@@ -1,3 +1,5 @@
+package br.ufpb.dcx.sisclinica.Exceptions;
+
 
 public class MedicamentoJaExisteException extends Exception {
 	

@@ -1,3 +1,6 @@
+package br.ufpb.dcx.sisclinica;
+
+import br.ufpb.dcx.sisclinica.Exceptions.MedicamentoJaExisteException;
 import java.util.List;
 
 public class Receita {
@@ -9,7 +12,7 @@ public class Receita {
 	private String dosagem;
 	private List<Medicamento> medicamentos;
 	
-	public Receita(Medico medico, Paciente paciente, String data, String medicamento, String dosagem) {
+	public Receita(Medico medico, Paciente paciente, String data, Medicamento medicamento, String dosagem) {
 		this.medico = medico;
 		this.paciente = paciente;
 		this.data = data;
@@ -21,7 +24,7 @@ public class Receita {
 		for(Medicamento med: medicamentos)
 			if(medicamento.getNome().equals(med.getNome())) {
 				if(medicamento.getMiligrama().equals(med.getMiligrama())) {
-					throw new MedicamentoJaExisteException("O medicamento de nome"+medicamento.getNome()+ " e miligrama"+medicamento.getMiligrama()+" já existe");
+					throw new MedicamentoJaExisteException("O medicamento de nome"+medicamento.getNome()+ " e miligrama"+medicamento.getMiligrama()+" jï¿½ existe");
 				}
 			}else {
 				medicamentos.add(medicamento);
@@ -29,7 +32,7 @@ public class Receita {
 	}
 	
 	public String imprimeReceita() {
-		return "Medico "+this.Medico.getNome()+"\n"
+		return "Medico "+this.medico.getNome()+"\n"
 				+"Paciente "+this.paciente.getNome()+"\n"
 				+"Data "+this.data+"\n"
 				+"Medicamento "+this.medicamento.getNome()+this.medicamento.getMiligrama()+"\n"

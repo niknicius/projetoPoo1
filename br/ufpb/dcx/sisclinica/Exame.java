@@ -1,3 +1,5 @@
+package br.ufpb.dcx.sisclinica;
+
 
 public class Exame {
 	private Paciente paciente;

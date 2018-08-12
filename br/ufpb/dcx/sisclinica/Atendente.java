@@ -1,3 +1,5 @@
+package br.ufpb.dcx.sisclinica;
+
 
 public class Atendente {
 	
@@ -10,13 +12,13 @@ public class Atendente {
 	}
 	
 	public void marcaConsulta(Paciente paciente, Medico medico, String dataConsulta, String dataRetorno) {
-		Consulta c = new Consulta(paciente, medico, dataConsulta, dataRetorno);
-		adicionaConsulta(c);
+		Consulta c = new Consulta(paciente, medico, dataConsulta, dataRetorno, false);
+		
 	}
 	
 	public void marcaExame(Paciente paciente, String dataExame, double valor, String dataRetorno) {
 		Exame e = new Exame(paciente, dataExame, valor, dataRetorno);
-		adicionaExame(e);
+		
 	}
 	
 	public String getNome() {

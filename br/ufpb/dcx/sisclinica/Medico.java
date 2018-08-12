@@ -1,4 +1,4 @@
-package clinica;
+package br.ufpb.dcx.sisclinica;
 
 public class Medico {
 	private String nome;
