@@ -1,6 +1,6 @@
 package br.ufpb.dcx.sisclinica;
 
-public class Medico {
+public class Medico implements Funcionario{
 	private String nome;
 	private String especialidade;
 	private String crm;
@@ -22,10 +22,11 @@ public class Medico {
 	
 	
 
+        @Override
 	public String getNome() {
 		return nome;
 	}
-
+        
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -46,10 +47,11 @@ public class Medico {
 		this.crm = crm;
 	}
 
+        @Override
 	public String getCpf() {
 		return cpf;
 	}
-
+        
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}

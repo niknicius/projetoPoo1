@@ -1,6 +1,8 @@
 package br.ufpb.dcx.sisclinica;
 
 public interface Funcionario {
-//	String nome;
-//	double salario;
+
+    public String getNome();
+    public String getCpf();
+    
 }

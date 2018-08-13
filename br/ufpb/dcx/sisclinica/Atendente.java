@@ -1,13 +1,15 @@
 package br.ufpb.dcx.sisclinica;
 
 
-public class Atendente {
+public class Atendente implements Funcionario{
 	
 	private String nome;
+        private String cpf;
 	private double salario;
 	
-	public Atendente(String nome, double salario) {
+	public Atendente(String nome,String cpf, double salario) {
 		this.nome = nome;
+                this.cpf = cpf;
 		this.salario = salario;
 	}
 	
@@ -36,5 +38,13 @@ public class Atendente {
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
+
+        public String getCpf() {
+            return cpf;
+        }
+
+        public void setCpf(String cpf) {
+            this.cpf = cpf;
+        }
 
 }

@@ -9,22 +9,22 @@ package br.ufpb.dcx.sisclinica.Exceptions;
  *
  * @author nikni
  */
-public class MedicoJaExisteException extends Exception {
+public class PacienteNaoExisteException extends Exception {
 
     /**
-     * Creates a new instance of <code>MedicoJaExisteException</code> without
+     * Creates a new instance of <code>PacienteNaoExisteException</code> without
      * detail message.
      */
-    public MedicoJaExisteException() {
+    public PacienteNaoExisteException() {
     }
 
     /**
-     * Constructs an instance of <code>MedicoJaExisteException</code> with the
-     * specified detail message.
+     * Constructs an instance of <code>PacienteNaoExisteException</code> with
+     * the specified detail message.
      *
      * @param msg the detail message.
      */
-    public MedicoJaExisteException(String msg) {
+    public PacienteNaoExisteException(String msg) {
         super(msg);
     }
 }

@@ -5,8 +5,11 @@
  */
 package br.ufpb.dcx.sisclinica;
 
-import br.ufpb.dcx.sisclinica.Exceptions.MedicoJaExisteException;
+import br.ufpb.dcx.sisclinica.Exceptions.FuncionarioJaExisteException;
+import br.ufpb.dcx.sisclinica.Exceptions.FuncionarioNaoExisteException;
+import br.ufpb.dcx.sisclinica.Exceptions.MedicoNaoExisteException;
 import br.ufpb.dcx.sisclinica.Exceptions.PacienteJaExisteException;
+import br.ufpb.dcx.sisclinica.Exceptions.PacienteNaoExisteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +20,13 @@ import java.util.List;
 public class Clinica {
     
     String nome;
-    List<Medico>medicos;
     List<Paciente> pacientes;
+    List<Funcionario> funcionarios;
     
     public Clinica(String nome){
         this.nome = nome;
-        this.medicos = new ArrayList<>();
         this.pacientes = new ArrayList<>();
+        this.funcionarios = new ArrayList<>();
     }
 
     public String getNome() {
@@ -33,15 +36,7 @@ public class Clinica {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public List<Medico> getMedicos() {
-        return medicos;
-    }
-
-    public void setMedicos(List<Medico> medicos) {
-        this.medicos = medicos;
-    }
-
+    
     public List<Paciente> getPacientes() {
         return pacientes;
     }
@@ -49,14 +44,22 @@ public class Clinica {
     public void setPacientes(List<Paciente> pacientes) {
         this.pacientes = pacientes;
     }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
     
-    public void adicionarMedico(Medico medico) throws MedicoJaExisteException{
-        for(Medico m : this.getMedicos()){
-            if(m.getNome().equalsIgnoreCase(medico.getNome()) && m.getCpf().equalsIgnoreCase(medico.getCpf())){
-                throw new MedicoJaExisteException("Médico já existe no sistema!");
+    public void adicionarFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException{
+        for(Funcionario f : this.getFuncionarios()){
+            if(f.getNome().equalsIgnoreCase(funcionario.getNome()) && f.getCpf().equalsIgnoreCase(funcionario.getCpf())){
+                throw new FuncionarioJaExisteException("Funcionario já existe no sistema!");
             }
         }
-        this.medicos.add(medico);
+        this.funcionarios.add(funcionario);
     }
     
     public void adicionarPaciente(Paciente paciente) throws PacienteJaExisteException{
@@ -66,5 +69,32 @@ public class Clinica {
             }
         }
         this.pacientes.add(paciente);
+    }
+    
+    public Funcionario procurarMedico(String cpf) throws MedicoNaoExisteException{
+        for(Funcionario f : this.getFuncionarios()){
+            if(f.getCpf().equalsIgnoreCase(cpf) && f instanceof Medico){
+                return f;
+            }
+        }
+        throw new MedicoNaoExisteException("Médico não encontrado! Favor procurar o RH");
+    }
+    
+    public Funcionario procurarFuncionario(String cpf) throws FuncionarioNaoExisteException{
+        for(Funcionario f : this.getFuncionarios()){
+            if(f.getCpf().equalsIgnoreCase(cpf)){
+                return f;
+            }
+        }
+        throw new FuncionarioNaoExisteException("Funcionario não encontrado! Favor procurar o RH");
+    }
+    
+    public Paciente procurarPaciente(String nome,String cpf) throws PacienteNaoExisteException{
+        for(Paciente p : this.getPacientes()){
+            if(p.getNome().equalsIgnoreCase(nome) && p.getCpf().equalsIgnoreCase(cpf)){
+                return p;
+            }
+        }
+        throw new PacienteNaoExisteException("Paciente não encontrado!");
     }
 }
