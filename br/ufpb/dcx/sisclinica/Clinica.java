@@ -8,6 +8,7 @@ package br.ufpb.dcx.sisclinica;
 import br.ufpb.dcx.sisclinica.Exceptions.FuncionarioJaExisteException;
 import br.ufpb.dcx.sisclinica.Exceptions.FuncionarioNaoExisteException;
 import br.ufpb.dcx.sisclinica.Exceptions.MedicoNaoExisteException;
+import br.ufpb.dcx.sisclinica.Exceptions.PacienteJaEstaNaFilaException;
 import br.ufpb.dcx.sisclinica.Exceptions.PacienteJaExisteException;
 import br.ufpb.dcx.sisclinica.Exceptions.PacienteNaoExisteException;
 import java.util.ArrayList;
@@ -19,9 +20,10 @@ import java.util.List;
  */
 public class Clinica {
     
-    String nome;
-    List<Paciente> pacientes;
-    List<Funcionario> funcionarios;
+    private String nome;
+    private List<Paciente> pacientes;
+    private List<Funcionario> funcionarios;
+    private Fila fila;
     
     public Clinica(String nome){
         this.nome = nome;
@@ -97,4 +99,23 @@ public class Clinica {
         }
         throw new PacienteNaoExisteException("Paciente não encontrado!");
     }
+    
+    public void adicionarPacienteFila(Paciente paciente) throws PacienteJaEstaNaFilaException{
+        
+        for(Paciente p : this.getFila().getPacientes()){
+            if(p.getCpf().equalsIgnoreCase(paciente.getCpf())){
+                throw new PacienteJaEstaNaFilaException("Paciente já está na fila!");
+            }
+        }
+    }
+
+    public Fila getFila() {
+        return fila;
+    }
+
+    public void setFila(Fila fila) {
+        this.fila = fila;
+    }
+    
+    
 }
