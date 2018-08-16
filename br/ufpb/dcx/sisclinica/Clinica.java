@@ -107,6 +107,8 @@ public class Clinica {
                 throw new PacienteJaEstaNaFilaException("Paciente já está na fila!");
             }
         }
+        
+        this.fila.addPacienteNaFila(paciente);
     }
 
     public Fila getFila() {
