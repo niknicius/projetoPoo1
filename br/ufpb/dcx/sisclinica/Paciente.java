@@ -6,28 +6,9 @@ public class Paciente {
 	private String cpf;
 	private String rg;
 	private String sexo;
-	private String cns;
 	private String nacionalidade;
 	private String cep;
 	private String uf;
-
-
-	
-	public Paciente (){
-	}
-	
-	public Paciente (String nome, String raca, String dataNascimento, String cpf, String rg, String sexo, String cns, String nacionalidade, String cep, String uf) {
-	this.nome = nome;
-	this.raca = raca;
-	this.dataNascimento = dataNascimento;
-	this.cpf = cpf;
-	this.rg = rg;
-	this.sexo = sexo;
-	this.cns = cns;
-	this.nacionalidade = nacionalidade;
-	this.cep = cep;
-	this.uf = uf;
-	}
 	
 	public Paciente (String nome, String raca, String dataNascimento, String cpf, String rg, String sexo, String nacionalidade, String cep, String uf) {
 	this.nome = nome;
@@ -87,14 +68,6 @@ public class Paciente {
 
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
-	}
-
-	public String getCns() {
-		return cns;
-	}
-
-	public void setCns(String cns) {
-		this.cns = cns;
 	}
 
 	public String getNacionalidade() {

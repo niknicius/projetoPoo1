@@ -21,39 +21,39 @@ public class SisClinica {
         
         mostraMensagem("Bem Vindo ao SisClinica!","Bem Vindo(a)",1);
         
-        String cargo = JOptionPane.showInputDialog("Digite a opÃ§Ã£o que descreve seu cargo:\n"
-                + "1 - MÃ©dico\n"
+        String cargo = JOptionPane.showInputDialog("Digite a opção que descreve seu cargo:\n"
+                + "1 - Médico\n"
                 + "2 - Atendente");
         while(cargo != null){
             switch(cargo){
                 case "1":
-                    String opcaoMedico = mostraInput("Digite o numero da opÃ§Ã£o desejada:\n"
+                    String opcaoMedico = mostraInput("Digite o numero da opção desejada:\n"
                             + "1 - Cadastrar\n"
                             + "2 - Entrar\n"
-                            + "3 - Voltar", "Menu mÃ©dico",3);
+                            + "3 - Voltar", "Menu médico",3);
                     
                     while(opcaoMedico != null){
                         switch(opcaoMedico){
                             case "1":
-                                String nomeMedicoCadastrar = mostraInput("Digite seu nome completo","Cadastrando novo mÃ©dico",3);
-                                String especialidadeMedicoCadastrar = mostraInput("Digite sua especialidade","Cadastrando novo mÃ©dico",3);
-                                String crmMedicoCadastrar = mostraInput("Digite seu CRM completo","Cadastrando novo mÃ©dico",3);
-                                String cpfMedicoCadastrar = mostraInput("Digite seu CPF completo","Cadastrando novo mÃ©dico",3);
+                                String nomeMedicoCadastrar = mostraInput("Digite seu nome completo","Cadastrando novo médico",3);
+                                String especialidadeMedicoCadastrar = mostraInput("Digite sua especialidade","Cadastrando novo médico",3);
+                                String crmMedicoCadastrar = mostraInput("Digite seu CRM completo","Cadastrando novo médico",3);
+                                String cpfMedicoCadastrar = mostraInput("Digite seu CPF completo","Cadastrando novo médico",3);
                                 boolean salaValida = false;
                                 int salaAtendimentoMedicoCadastrar = 0;
                                 while(!salaValida)
                                 try{
-                                    salaAtendimentoMedicoCadastrar = Integer.parseInt(mostraInput("Digite a sala onde deseka realizar os atendimentos","Cadastrando novo mÃ©dico",3));
+                                    salaAtendimentoMedicoCadastrar = Integer.parseInt(mostraInput("Digite a sala onde deseka realizar os atendimentos","Cadastrando novo médico",3));
                                     salaValida = true;
                                     System.out.println("Passou");
                                 }
                                 catch(NumberFormatException ex){
-                                    mostraMensagem("Sala InvÃ¡lida!","Erro",0);
+                                    mostraMensagem("Sala Inválida!","Erro",0);
                                 }
                                 Funcionario medico = new Medico(nomeMedicoCadastrar,especialidadeMedicoCadastrar,crmMedicoCadastrar,cpfMedicoCadastrar,salaAtendimentoMedicoCadastrar,1000.0,false);
                                 try{
                                     clinica.adicionarFuncionario(medico);
-                                    mostraMensagem("MÃ©dico cadastrado com sucesso!", "Cadastro de mÃ©dico", 1);
+                                    mostraMensagem("Médico cadastrado com sucesso!", "Cadastro de médico", 1);
                                 }
                                 catch(FuncionarioJaExisteException ex){
                                     mostraMensagem(ex.getMessage(), "Erro!", 0);
@@ -61,10 +61,10 @@ public class SisClinica {
                                 break;
 
                             case "2":
-                                String cpfLogar = mostraInput("Digite seu CPF:", "Login MÃ©dico",3);
+                                String cpfLogar = mostraInput("Digite seu CPF:", "Login Médico",3);
                                 try{
                                     Funcionario medicoLogar = clinica.procurarMedico(cpfLogar);
-                                    mostraMensagem("Bem vindo, " + medicoLogar.getNome() , "Login MÃ©dico", 1);
+                                    mostraMensagem("Bem vindo, " + medicoLogar.getNome() , "Login Médico", 1);
                                 }
                                 catch(MedicoNaoExisteException ex){
                                     mostraMensagem(ex.getMessage(),"Erro!",0);
@@ -73,17 +73,19 @@ public class SisClinica {
                             default:
                                 opcaoMedico = null;
                         }
-                        opcaoMedico = mostraInput("Digite o numero da opÃ§Ã£o desejada:\n"
+                        opcaoMedico = mostraInput("Digite o numero da opção desejada:\n"
                             + "1 - Cadastrar\n"
                             + "2 - Entrar\n"
-                            + "3 - Voltar", "Menu mÃ©dico",3);
+                            + "3 - Voltar", "Menu médico",3);
                     }
                     
                     break;
                 case "2":
-                    String opcaoAtendente = mostraInput("Selecione a opÃ§Ã£o desejada:\n"
+                    String opcaoAtendente = mostraInput("Selecione a opção desejada:\n"
                             + "1 - Cadastrar\n"
-                            + "2 - Entrar\n","Menu Atendente",3);
+                            + "2 - Entrar\n"
+                            + "3 - Criar lista de pacientes\n"
+                            + "4 - Adicionar paciente na fila\n", "Menu Atendente",3);
                     while(opcaoAtendente != null){
                         switch(opcaoAtendente){
                             case "1":
@@ -107,20 +109,39 @@ public class SisClinica {
                                 catch(FuncionarioNaoExisteException ex){
                                     mostraMensagem(ex.getMessage(),"Erro!",0);
                                 }
-                                break;    
+                                break;
+                            case "3":
+                            	String nomeP = mostraInput("Digite o nome do paciente:", "Criando lista de pacientes", 3);
+                            	String racaP = mostraInput("Digite a raça do paciente:", "Criando lista de pacientes", 3);
+                            	String dataNascimentoP = mostraInput("Digite a data de nascimento do paciente:", "Criando lista de pacientes", 3);
+                            	String cpfP = mostraInput("Digite o CPF completo do paciente:", "Criando lista de pacientes", 3);
+                            	String rgP = mostraInput("Digite o RG completo do paciente:", "Criando lista de pacientes", 3);
+                            	String sexoP = mostraInput("Digite o sexo do paciente:", "Criando lista de pacientes", 3);
+                            	String nacionalidadeP = mostraInput("Digite a nacionalidade do paciente:", "Criando lista de pacientes", 3);
+                            	String cepP = mostraInput("Digite o CEP do endereço do paciente:", "Criando lista de pacientes", 3);
+                            	String ufP = mostraInput("Digite a UF correspondente ao endereço do paciente:", "Criando lista de pacientes", 3);
+                            	Paciente paciente1 = new Paciente (nome1, raca1, dataNascimento1, cpf1, rg1, sexo1, nacionalidade1, cep1, uf1);
+                            	try{
+                                    clinica.adicionarPaciente(paciente1);
+                                    mostraMensagem("Paciente cadastrado com sucesso!", "Cadastro de paciente", 1);
+                                }
+                                catch(PacienteJaExisteException ex){
+                                    mostraMensagem(ex.getMessage(), "Erro!", 0);
+                                }
+                            	break;
                             default:
                                 opcaoAtendente = null;
                         }
-                        opcaoAtendente = mostraInput("Selecione a opÃ§Ã£o desejada:\n"
+                        opcaoAtendente = mostraInput("Selecione a opção desejada:\n"
                             + "1 - Cadastrar\n"
                             + "2 - Entrar\n","Menu Atendente",3);
                     }
                 default:
-                    mostraMensagem("OpÃ§Ã£o InvÃ¡lida!","Erro",0);
+                    mostraMensagem("Opção Inválida!","Erro",0);
                     break;
             }
-            cargo = JOptionPane.showInputDialog("Digite a opÃ§Ã£o que descreve seu cargo:\n"
-                + "1 - MÃ©dico\n"
+            cargo = JOptionPane.showInputDialog("Digite a opção que descreve seu cargo:\n"
+                + "1 - Médico\n"
                 + "2 - Atendente");
         }
     }

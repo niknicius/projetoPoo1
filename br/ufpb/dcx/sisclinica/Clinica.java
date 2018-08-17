@@ -79,7 +79,7 @@ public class Clinica {
                 return f;
             }
         }
-        throw new MedicoNaoExisteException("Médico não encontrado! Favor procurar o RH");
+        throw new MedicoNaoExisteException("Médico não encontrado! Por favor procurar o RH");
     }
     
     public Funcionario procurarFuncionario(String cpf) throws FuncionarioNaoExisteException{
@@ -88,7 +88,7 @@ public class Clinica {
                 return f;
             }
         }
-        throw new FuncionarioNaoExisteException("Funcionario não encontrado! Favor procurar o RH");
+        throw new FuncionarioNaoExisteException("Funcionario não encontrado! Por favor procurar o RH");
     }
     
     public Paciente procurarPaciente(String nome,String cpf) throws PacienteNaoExisteException{
