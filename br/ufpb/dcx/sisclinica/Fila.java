@@ -20,7 +20,7 @@ public class Fila {
 	
 	public void addPacienteNaFila(Paciente paciente) {
 		for(Paciente p: this.pacientes) {
-			if(p.getNome().equalsIgnoreCase(paciente.getNome())) {
+			if(p.getCpf().equalsIgnoreCase(paciente.getCpf()) && p.getTipoConsulta().equalsIgnoreCase(paciente.getTipoConsulta())) {
 				this.pacientes.add(paciente);
 			}
 		}
@@ -28,7 +28,7 @@ public class Fila {
 	
 	public void removerPacienteDaFila(Paciente paciente) {
 		for(Paciente p: this.pacientes) {
-			if(p.getNome().equalsIgnoreCase(paciente.getNome())) {
+			if(p.getNome().equalsIgnoreCase(paciente.getNome()) && p.getTipoConsulta().equalsIgnoreCase(paciente.getTipoConsulta())) {
 				this.pacientes.remove(paciente);
 			}
 		}

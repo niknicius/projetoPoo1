@@ -12,6 +12,11 @@ package br.ufpb.dcx.sisclinica.Exceptions;
 public class FuncionarioJaExisteException extends Exception {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Creates a new instance of <code>MedicoJaExisteException</code> without
      * detail message.
      */

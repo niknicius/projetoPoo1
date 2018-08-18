@@ -9,8 +9,9 @@ public class Paciente {
 	private String nacionalidade;
 	private String cep;
 	private String uf;
+	private String tipoConsulta;
 	
-	public Paciente (String nome, String raca, String dataNascimento, String cpf, String rg, String sexo, String nacionalidade, String cep, String uf) {
+	public Paciente (String nome, String raca, String dataNascimento, String cpf, String rg, String sexo, String nacionalidade, String cep, String uf, String tipoConsulta) {
 	this.nome = nome;
 	this.raca = raca;
 	this.dataNascimento = dataNascimento;
@@ -20,6 +21,7 @@ public class Paciente {
 	this.nacionalidade = nacionalidade;
 	this.cep = cep;
 	this.uf = uf;
+	this.tipoConsulta = tipoConsulta;
 	}
 	
 	public String getNome() {
@@ -96,5 +98,13 @@ public class Paciente {
 
 	public String getDataNascimento() {
 		return dataNascimento;
+	}
+	
+	public String getTipoConsulta() {
+		return this.tipoConsulta;
+	}
+	
+	public void setTipoConsulta(String tipoConsulta) {
+		this.tipoConsulta = tipoConsulta;
 	}
 }

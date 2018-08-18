@@ -8,7 +8,12 @@ package br.ufpb.dcx.sisclinica.Exceptions;
  */
 public class ExameJaExisteException extends Exception{
     
-    public ExameJaExisteException(String msg){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ExameJaExisteException(String msg){
         super(msg);
     }
     

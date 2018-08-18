@@ -12,6 +12,11 @@ package br.ufpb.dcx.sisclinica.Exceptions;
 public class PacienteJaExisteException extends Exception {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Creates a new instance of <code>PacienteJaExisteException</code> without
      * detail message.
      */
