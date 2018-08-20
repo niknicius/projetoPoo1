@@ -30,6 +30,7 @@ public class Clinica {
         this.nome = nome;
         this.pacientes = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
+        this.fila = new Fila();
     }
 
     public String getNome() {

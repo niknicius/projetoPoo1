@@ -249,6 +249,11 @@ public class SisClinica {
                                 	default:
                                 		opcaoAtendenteLogado = null;
                                 	}
+                                        
+                                        opcaoAtendenteLogado = mostraInput("Selecione a opção desejada:\n"
+                                        + "1 - Cadastrar paciente\n"
+                                        + "2 - Adicionar paciente na fila\n"
+                                        + "3 - Proximo da fila", "Menu Atendente Logado",3);
                                 }
                             default:
                                 opcaoAtendente = null;
