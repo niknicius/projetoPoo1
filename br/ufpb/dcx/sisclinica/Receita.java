@@ -1,6 +1,7 @@
 package br.ufpb.dcx.sisclinica;
 
-import br.ufpb.dcx.sisclinica.Exceptions.MedicamentoJaExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.MedicamentoJaExisteException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Receita {
@@ -8,35 +9,38 @@ public class Receita {
 	private Medico medico;
 	private Paciente paciente;
 	private String data;
-	private Medicamento medicamento;
-	private String dosagem;
 	private List<Medicamento> medicamentos;
 	
-	public Receita(Medico medico, Paciente paciente, String data, Medicamento medicamento, String dosagem) {
+	public Receita(Medico medico, Paciente paciente, String data){
 		this.medico = medico;
 		this.paciente = paciente;
 		this.data = data;
-		this.medicamento = medicamento;
-		this.dosagem = dosagem;
+                this.medicamentos = new ArrayList<>();
 	}
 	
 	public void cadastraMedicamento(Medicamento medicamento) throws MedicamentoJaExisteException {
 		for(Medicamento med: medicamentos)
 			if(medicamento.getNome().equals(med.getNome())) {
 				if(medicamento.getMiligrama().equals(med.getMiligrama())) {
-					throw new MedicamentoJaExisteException("O medicamento de nome"+medicamento.getNome()+ " e miligrama"+medicamento.getMiligrama()+" j� existe");
+					throw new MedicamentoJaExisteException("O medicamento de nome" + medicamento.getNome() + " e miligrama"+medicamento.getMiligrama()+" j� existe");
 				}
 			}else {
 				medicamentos.add(medicamento);
 		}
 	}
 	
-	public String imprimeReceita() {
-		return "Medico "+this.medico.getNome()+"\n"
-				+"Paciente "+this.paciente.getNome()+"\n"
-				+"Data "+this.data+"\n"
-				+"Medicamento "+this.medicamento.getNome()+this.medicamento.getMiligrama()+"\n"
-				+"Dosagem "+this.dosagem;
+        @Override
+	public String toString() {
+            
+            String stringMedicamentos = "";
+            for(Medicamento m : this.getMedicamentos()){
+                stringMedicamentos += m.getNome();
+                stringMedicamentos += " :" +m.getMiligrama() + "\n";
+            }
+		return "Medico: "+this.medico.getNome()+"\n"
+				+"Paciente: "+this.paciente.getNome()+"\n"
+				+"Data: "+this.data+"\n"
+				+"Medicamentos: "+stringMedicamentos;
 	}
 	
 	public Medico getMedico() {
@@ -64,17 +68,15 @@ public class Receita {
 		this.data = data;
 	}
 
-	public Medicamento getMedicamentos() {
-		return medicamento;
-	}
+    public List<Medicamento> getMedicamentos() {
+        return medicamentos;
+    }
 
-	public void setMedicamentos(Medicamento medicamento) {
-		this.medicamento = medicamento;
-	}
-	
-	public String getNomeMedicamento() {
-		return this.medicamento.getNome();
-	}
+    public void setMedicamentos(List<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+        
+        
 
 
 	

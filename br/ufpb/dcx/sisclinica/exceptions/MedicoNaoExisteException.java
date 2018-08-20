@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufpb.dcx.sisclinica.Exceptions;
+package br.ufpb.dcx.sisclinica.exceptions;
 
 /**
  *
  * @author nikni
  */
-public class PacienteJaExisteException extends Exception {
+public class MedicoNaoExisteException extends Exception {
 
     /**
 	 * 
@@ -17,19 +17,19 @@ public class PacienteJaExisteException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * Creates a new instance of <code>PacienteJaExisteException</code> without
+     * Creates a new instance of <code>MedicoNaoExisteException</code> without
      * detail message.
      */
-    public PacienteJaExisteException() {
+    public MedicoNaoExisteException() {
     }
 
     /**
-     * Constructs an instance of <code>PacienteJaExisteException</code> with the
+     * Constructs an instance of <code>MedicoNaoExisteException</code> with the
      * specified detail message.
      *
      * @param msg the detail message.
      */
-    public PacienteJaExisteException(String msg) {
+    public MedicoNaoExisteException(String msg) {
         super(msg);
     }
 }

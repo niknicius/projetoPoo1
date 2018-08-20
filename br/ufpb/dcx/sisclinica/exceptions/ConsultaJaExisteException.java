@@ -1,4 +1,4 @@
-package br.ufpb.dcx.sisclinica.Exceptions;
+package br.ufpb.dcx.sisclinica.exceptions;
 
 
 public class ConsultaJaExisteException extends Exception {

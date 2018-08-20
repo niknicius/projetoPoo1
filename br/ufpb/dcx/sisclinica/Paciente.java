@@ -10,8 +10,9 @@ public class Paciente {
 	private String cep;
 	private String uf;
 	private String tipoConsulta;
+        private Prontuario prontuario;
 	
-	public Paciente (String nome, String raca, String dataNascimento, String cpf, String rg, String sexo, String nacionalidade, String cep, String uf, String tipoConsulta) {
+	public Paciente (String nome, String raca, String dataNascimento, String cpf, String rg, String sexo, String nacionalidade, String cep, String uf, String tipoConsulta, Prontuario prontuario) {
 	this.nome = nome;
 	this.raca = raca;
 	this.dataNascimento = dataNascimento;
@@ -22,6 +23,7 @@ public class Paciente {
 	this.cep = cep;
 	this.uf = uf;
 	this.tipoConsulta = tipoConsulta;
+        this.prontuario = prontuario;
 	}
 	
 	public String getNome() {
@@ -107,4 +109,13 @@ public class Paciente {
 	public void setTipoConsulta(String tipoConsulta) {
 		this.tipoConsulta = tipoConsulta;
 	}
+
+        public Prontuario getProntuario() {
+           return prontuario;
+        }
+
+        public void setProntuario(Prontuario prontuario) {
+            this.prontuario = prontuario;
+        }
+        
 }

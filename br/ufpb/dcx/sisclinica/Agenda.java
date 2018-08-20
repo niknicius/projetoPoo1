@@ -1,7 +1,7 @@
 package br.ufpb.dcx.sisclinica;
 
-import br.ufpb.dcx.sisclinica.Exceptions.ConsultaJaExisteException;
-import br.ufpb.dcx.sisclinica.Exceptions.ExameJaExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.ConsultaJaExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.ExameJaExisteException;
 import java.util.ArrayList;
 import java.util.List;
 

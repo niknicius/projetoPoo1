@@ -5,12 +5,13 @@
  */
 package br.ufpb.dcx.sisclinica;
 
-import br.ufpb.dcx.sisclinica.Exceptions.FuncionarioJaExisteException;
-import br.ufpb.dcx.sisclinica.Exceptions.FuncionarioNaoExisteException;
-import br.ufpb.dcx.sisclinica.Exceptions.MedicoNaoExisteException;
-import br.ufpb.dcx.sisclinica.Exceptions.PacienteJaEstaNaFilaException;
-import br.ufpb.dcx.sisclinica.Exceptions.PacienteJaExisteException;
-import br.ufpb.dcx.sisclinica.Exceptions.PacienteNaoExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.FilaVaziaException;
+import br.ufpb.dcx.sisclinica.exceptions.FuncionarioJaExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.FuncionarioNaoExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.MedicoNaoExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.PacienteJaEstaNaFilaException;
+import br.ufpb.dcx.sisclinica.exceptions.PacienteJaExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.PacienteNaoExisteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,9 +92,9 @@ public class Clinica {
         throw new FuncionarioNaoExisteException("Funcionario não encontrado! Por favor procurar o RH");
     }
     
-    public Paciente procurarPaciente(String nome,String cpf) throws PacienteNaoExisteException{
+    public Paciente procurarPaciente(String cpf) throws PacienteNaoExisteException{
         for(Paciente p : this.getPacientes()){
-            if(p.getNome().equalsIgnoreCase(nome) && p.getCpf().equalsIgnoreCase(cpf)){
+            if(p.getCpf().equalsIgnoreCase(cpf)){
                 return p;
             }
         }
@@ -109,6 +110,10 @@ public class Clinica {
         }
         
         this.fila.addPacienteNaFila(paciente);
+    }
+    
+    public Paciente removePrimeiroDaFila() throws FilaVaziaException{
+        return this.getFila().removerProximoDaFila();
     }
 
     public Fila getFila() {
