@@ -13,6 +13,8 @@ import br.ufpb.dcx.sisclinica.exceptions.PacienteNaoExisteException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -73,6 +75,10 @@ public class SisClinica {
                                 String cpfLogar = mostraInput("Digite seu CPF:", "Login Médico",3);
                                 try{
                                     Funcionario medicoLogar = clinica.procurarMedico(cpfLogar);
+                                    if(medicoLogar.getNivelDeAcesso() != 1){
+                                    mostraMensagem("Area restrita", "Erro", 0);
+                                    break;
+                                }
                                     mostraMensagem("Bem vindo, " + medicoLogar.getNome() , "Login Médico", 1);
                                     String cpfPaciente = mostraInput("Digite o CPF do paciente que deseja realizar o atendimento:","Acessar paciente",3);
                                     try{
@@ -189,6 +195,10 @@ public class SisClinica {
                                 String cpfAtendenteLogar = mostraInput("Digite seu CPF completo:", "Login Atendente", 3);
                                 try{
                                 Funcionario atendenteLogar = clinica.procurarFuncionario(cpfAtendenteLogar);
+                                if(atendenteLogar.getNivelDeAcesso() != 2){
+                                    mostraMensagem("Area restrita", "Erro", 0);
+                                    break;
+                                }
                                 mostraMensagem("Bem vindo, " + atendenteLogar.getNome() , "Login Atendente", 1);
                                 }
                                 catch(FuncionarioNaoExisteException ex){
@@ -198,7 +208,10 @@ public class SisClinica {
                                 String opcaoAtendenteLogado = mostraInput("Selecione a opção desejada:\n"
                                         + "1 - Cadastrar paciente\n"
                                         + "2 - Adicionar paciente na fila\n"
-                                        + "3 - Proximo da fila", "Menu Atendente Logado",3);
+                                        + "3 - Proximo da fila\n"
+                                        + "4 - Verificar proxima consulta ou exame do paciente\n"
+                                        + "5 - Marcar Exame"
+                                        + "6 - Marcar consulta", "Menu Atendente Logado",3);
                                 while(opcaoAtendenteLogado != null){
                                 	switch(opcaoAtendenteLogado){
                                 		case "1":
@@ -258,6 +271,31 @@ public class SisClinica {
                                             }
                                             
                                             break;
+                                        // Verifica consultas e exames marcados para o paciente x    
+                                        case "4":
+                                            break;
+                                        
+                                        // Marca uma consulta na agenda
+                                        case "5":
+                                            
+                                            String cpfPacienteMarcarConsulta = mostraInput("Digite o cpf do paciente que deseja marcar a consulta", "Marcar consulta", 3);
+                                            try{
+                                                Paciente pacienteMarcarConsulta = clinica.procurarPaciente(cpfPacienteMarcarConsulta);
+                                                String cpfMedicoMarcarConsulta = mostraInput("Digite o cpf do médico que irá realizar a consulta", "Marcar consulta", 3);
+                                                Funcionario medicoMarcarConsulta = clinica.procurarMedico(cpfMedicoMarcarConsulta);
+                                                String dataDaConsultaMarcarConsulta = mostraInput("Digite a data da consulta", "Marcar consulta", 3);
+                                                String dataDoRetornoMarcarConsulta = mostraInput("Digite a data do retorno da consulta", "Marcar consulta", 3);
+                                                Consulta consulta = new Consulta(pacienteMarcarConsulta,(Medico) medicoMarcarConsulta, dataDaConsultaMarcarConsulta, dataDoRetornoMarcarConsulta, true);
+                                            }
+                                            catch (MedicoNaoExisteException | PacienteNaoExisteException ex) {
+                                                mostraMensagem(ex.getMessage(), "Erro!", 0);
+                                            }                                                
+                                            break;
+                                        
+                                        // Marca um exame na agenda
+                                        case "6":
+                                            break;
+                                            
                                 	default:
                                 		opcaoAtendenteLogado = null;
                                 	}

@@ -45,11 +45,9 @@ public class Fila {
         
         public Paciente removerProximoDaFila() throws FilaVaziaException{
             if(this.getPacientes().isEmpty()){
-                System.out.println("erro");
                 throw new FilaVaziaException("A fila está vazia!");
             }
             else{
-                System.out.println("erro2");
                 return this.getPacientes().remove(0);
             }
         }

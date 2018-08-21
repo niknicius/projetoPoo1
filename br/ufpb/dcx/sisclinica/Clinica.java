@@ -5,6 +5,8 @@
  */
 package br.ufpb.dcx.sisclinica;
 
+import br.ufpb.dcx.sisclinica.exceptions.ConsultaJaExisteException;
+import br.ufpb.dcx.sisclinica.exceptions.ExameJaExisteException;
 import br.ufpb.dcx.sisclinica.exceptions.FilaVaziaException;
 import br.ufpb.dcx.sisclinica.exceptions.FuncionarioJaExisteException;
 import br.ufpb.dcx.sisclinica.exceptions.FuncionarioNaoExisteException;
@@ -25,12 +27,14 @@ public class Clinica {
     private List<Paciente> pacientes;
     private List<Funcionario> funcionarios;
     private Fila fila;
+    private Agenda agenda;
     
     public Clinica(String nome){
         this.nome = nome;
         this.pacientes = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
         this.fila = new Fila();
+        this.agenda = new Agenda();
     }
 
     public String getNome() {
@@ -116,6 +120,34 @@ public class Clinica {
     public Paciente removePrimeiroDaFila() throws FilaVaziaException{
         return this.getFila().removerProximoDaFila();
     }
+    
+    public void marcarConsulta(Consulta con) throws ConsultaJaExisteException{
+        for(Consulta c : this.getAgenda().getConsultas()){
+            if(c.getPaciente().getNome().equalsIgnoreCase(con.getPaciente().getNome())){
+                throw new ConsultaJaExisteException("Consulta já marcada na agenda");
+            }
+        }
+        this.agenda.adicionaConsulta(con);
+    }
+    
+    public void marcarExame(Exame exame) throws ExameJaExisteException{
+        for(Exame e : this.getAgenda().getExames()){
+            if(e.getPaciente().getNome().equalsIgnoreCase(exame.getPaciente().getNome())){
+                throw new ExameJaExisteException("Exame já marcado na agenda");
+            }
+        }
+        this.agenda.adicionaExame(exame);
+    }
+
+    public Agenda getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(Agenda agenda) {
+        this.agenda = agenda;
+    }
+    
+    
 
     public Fila getFila() {
         return fila;
