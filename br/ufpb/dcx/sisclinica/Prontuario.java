@@ -88,7 +88,7 @@ public class Prontuario {
     
     @Override
     public String toString(){
-        
+        System.out.println("1");
         String stringSintomas = "";
         
         stringSintomas = this.getSintomas().stream().map((s) -> s + " \n").reduce(stringSintomas, String::concat);
@@ -100,7 +100,7 @@ public class Prontuario {
         else{
             stringDiagnostico = this.getDiagnostico();
         }
-        
+        System.out.println("2");
         stringSintomas = this.getSintomas().stream().map((s) -> s + " \n").reduce(stringSintomas, String::concat);
         
         String stringExames = "";
@@ -110,7 +110,7 @@ public class Prontuario {
         else{
             stringExames = this.getListaExame().stream().map((s) -> s + " \n").reduce(stringExames, String::concat);
         }
-        
+        System.out.println("3");
         return "Diagnostico :" + stringDiagnostico + "\n Sintomas: " + stringSintomas + "\nExames: " + stringExames + "\n Receita:" + this.getReceita().toString();
     }
 

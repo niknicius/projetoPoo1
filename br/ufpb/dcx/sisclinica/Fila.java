@@ -1,6 +1,7 @@
 package br.ufpb.dcx.sisclinica;
 
 import br.ufpb.dcx.sisclinica.exceptions.FilaVaziaException;
+import br.ufpb.dcx.sisclinica.exceptions.PacienteJaEstaNaFilaException;
 import java.util.ArrayList;
 
 /**
@@ -23,12 +24,14 @@ public class Fila {
 		this.pacientes = pacientes;
 	}
 	
-	public void addPacienteNaFila(Paciente paciente) {
+	public void addPacienteNaFila(Paciente paciente) throws PacienteJaEstaNaFilaException {
 		for(Paciente p: this.pacientes) {
-			if(!p.getCpf().equalsIgnoreCase(paciente.getCpf()) && !p.getTipoConsulta().equalsIgnoreCase(paciente.getTipoConsulta())) {
-				this.pacientes.add(paciente);
+			if(p.getCpf().equalsIgnoreCase(paciente.getCpf()) && p.getTipoConsulta().equalsIgnoreCase(paciente.getTipoConsulta())) {
+				throw new PacienteJaEstaNaFilaException("Paciente ja está na fila!");
 			}
 		}
+                
+                this.pacientes.add(paciente);
 	}
 	
         @Deprecated
@@ -46,6 +49,7 @@ public class Fila {
                 throw new FilaVaziaException("A fila está vazia!");
             }
             else{
+                System.out.println("erro2");
                 return this.getPacientes().remove(0);
             }
         }

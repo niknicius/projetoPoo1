@@ -131,9 +131,20 @@ public class SisClinica {
                                                     case "4":
                                                         String novoDiagnosticoPaciente = mostraInput("Qual o novo diagnóstico?", "Atualizar Diagnóstico",3);
                                                         prontuarioPacienteConsulta.setDiagnostico(novoDiagnosticoPaciente);
+                                                        mostraMensagem("Diagnóstico atualizado com sucesso!", "Atualizar Diagnóstico",1);
                                                         break;
+                                                    
+                                                    default:
+                                                        mostraMensagem("Opção Inválida!","Erro!",0);
+                                                    
                                                         
-                                            }            
+                                            }       
+                                            
+                                            opcaoMedicoPaciente = mostraInput("Digite o número da opção desejada: \n"
+                                                + "1 - Mostrar Prontuario\n"
+                                                + "2 - Requisitar Exame\n"
+                                                + "3 - Cadastrar Receita\n"
+                                                + "4 - Atualizar diagnóstico", "Menu Médico -> Paciente", 3);
                                         }
                                         
                                     }
@@ -182,6 +193,7 @@ public class SisClinica {
                                 }
                                 catch(FuncionarioNaoExisteException ex){
                                     mostraMensagem(ex.getMessage(),"Erro!",0);
+                                    break;
                                 }
                                 String opcaoAtendenteLogado = mostraInput("Selecione a opção desejada:\n"
                                         + "1 - Cadastrar paciente\n"
@@ -263,8 +275,9 @@ public class SisClinica {
                             + "1 - Cadastrar\n"
                             + "2 - Entrar\n","Menu Atendente",3);
                     }
+                    break;
                 default:
-                    mostraMensagem("Opção Inválida!","Erro",0);
+                    mostraMensagem("Opção Inválida x2!","Erro",0);
                     break;
             }
             cargo = JOptionPane.showInputDialog("Digite a opção que descreve seu cargo:\n"
