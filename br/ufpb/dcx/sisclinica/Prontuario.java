@@ -19,7 +19,7 @@ public class Prontuario {
 
     public Prontuario(String dataProntuario, List<String> listaExame, String diagnostico, Medico medicoAtual, List<String> sintomas) {
         this.dataProntuario = dataProntuario;
-        this.listaExame = listaExame;
+        this.listaExame = new ArrayList<>();
         this.diagnostico = diagnostico;
         this.medicoAtual = medicoAtual;
         this.sintomas = sintomas;
@@ -88,30 +88,39 @@ public class Prontuario {
     
     @Override
     public String toString(){
-        System.out.println("1");
         String stringSintomas = "";
         
-        stringSintomas = this.getSintomas().stream().map((s) -> s + " \n").reduce(stringSintomas, String::concat);
-        
-        String stringDiagnostico;
-        if(this.getDiagnostico() == null){
-            stringDiagnostico = "Não diagnosticado";
+        if(this.getSintomas() == null || this.getSintomas().isEmpty()){
+            stringSintomas = "Sintomas não cadastrados";
+        }
+        else{
+            stringSintomas = this.getSintomas().stream().map((s) -> s + " \n").reduce(stringSintomas, String::concat);
+        }
+        String stringDiagnostico = "";
+        if(this.getDiagnostico() == null || this.getDiagnostico().length() == 0){
+          stringDiagnostico = "Não diagnosticado";
         }
         else{
             stringDiagnostico = this.getDiagnostico();
         }
-        System.out.println("2");
-        stringSintomas = this.getSintomas().stream().map((s) -> s + " \n").reduce(stringSintomas, String::concat);
+        
         
         String stringExames = "";
-        if(this.getListaExame().size() == 0){
-            stringDiagnostico = "Sem exames realizados";
+        if(this.getListaExame() == null || this.getListaExame().isEmpty()){
+           stringDiagnostico = "Sem exames realizados";
         }
         else{
-            stringExames = this.getListaExame().stream().map((s) -> s + " \n").reduce(stringExames, String::concat);
+          stringExames = this.getListaExame().stream().map((s) -> s + " \n").reduce(stringExames, String::concat);
         }
-        System.out.println("3");
-        return "Diagnostico :" + stringDiagnostico + "\n Sintomas: " + stringSintomas + "\nExames: " + stringExames + "\n Receita:" + this.getReceita().toString();
+        
+        String stringReceita = "";
+        if(this.getReceita() == null){;
+            stringReceita = "Sem receita cadastrada";
+        }
+        else{
+            stringReceita = this.getReceita().toString();
+        }
+        return "Diagnostico :" + stringDiagnostico + "\nSintomas: " + stringSintomas + "\nExames: " + stringExames + "\nReceita:" + stringReceita;
     }
 
 }

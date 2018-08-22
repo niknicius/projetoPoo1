@@ -27,7 +27,14 @@ public class SisClinica {
      */
     
     public static void main(String[] args) {
-        Clinica clinica = new Clinica("Clinex");
+        
+        
+        Clinica clinica;
+        try {
+            clinica = (Clinica) SalvarDados.recuperarDados();
+        } catch (Exception ex) {
+            clinica = new Clinica("Clinex");
+        }
         
         mostraMensagem("Bem Vindo ao SisClinica!","Bem Vindo(a)",1);
         Date dataAtual = new Date();
@@ -84,6 +91,7 @@ public class SisClinica {
                                     try{
                                         Paciente pacienteConsulta = clinica.procurarPaciente(cpfPaciente);
                                         Prontuario prontuarioPacienteConsulta = pacienteConsulta.getProntuario();
+                                        System.out.println(prontuarioPacienteConsulta.getDiagnostico());
                                         
                                         // Cast de Funcionario para Medico e Atualização do médico atual do prontuario
                                         Medico medicoAtualProntuario = (Medico) medicoLogar;
@@ -105,8 +113,9 @@ public class SisClinica {
                                                         boolean cadastrarNovoExamePacienteConsulta = true;
                                                         while(cadastrarNovoExamePacienteConsulta){
                                                             String novoExamePacienteConsulta = mostraInput("Digite o nome do exame que deseja adicionar ao prontuário:", "Prontuário de paciente",1);
-                                                            if(novoExamePacienteConsulta != null){
+                                                            if(novoExamePacienteConsulta != null){                                         
                                                                 prontuarioPacienteConsulta.novoExame(novoExamePacienteConsulta);
+                                                                System.out.println("Exame");
                                                             }
                                                             else{
                                                                 cadastrarNovoExamePacienteConsulta = false;
@@ -273,6 +282,31 @@ public class SisClinica {
                                             break;
                                         // Verifica consultas e exames marcados para o paciente x    
                                         case "4":
+                                            String cpfVerificarConsultas = mostraInput("Digite o cpf do paciente que verificar as proximas consultas e exames:", "Verificando agenda", 3);
+                                        {
+                                            try {
+                                                Paciente pacienteVerificarConsultas = clinica.procurarPaciente(cpfVerificarConsultas);
+                                                Consulta consultaVerificarConsultas = clinica.getAgenda().pesquisaConsultaPaciente(pacienteVerificarConsultas);
+                                                Exame exameVerificarConsultas = clinica.getAgenda().pesquisaExamePaciente(pacienteVerificarConsultas);
+                                                
+                                                if(consultaVerificarConsultas == null){
+                                                    mostraInput("A proxima consulta do paciente está programada para a data:" + consultaVerificarConsultas.getDataConsulta(),"Verificando agenda",1);
+                                                }
+                                                else{
+                                                    mostraMensagem("O paciente não tem consultas previstas", "Erro!", 0);
+                                                }
+                                                if(consultaVerificarConsultas == null){
+                                                    mostraInput("O proximo exame do paciente esta programado para :" + exameVerificarConsultas.getDataExame(),"Verificando agenda",1);
+                                                }
+                                                else{
+                                                    mostraMensagem("O paciente não tem exames previstas", "Erro!", 0);
+                                                }
+                                                    
+                                            } catch (PacienteNaoExisteException ex) {
+                                                Logger.getLogger(SisClinica.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                        }
+                                            
                                             break;
                                         
                                         // Marca uma consulta na agenda
@@ -303,10 +337,14 @@ public class SisClinica {
                                         opcaoAtendenteLogado = mostraInput("Selecione a opção desejada:\n"
                                         + "1 - Cadastrar paciente\n"
                                         + "2 - Adicionar paciente na fila\n"
-                                        + "3 - Proximo da fila", "Menu Atendente Logado",3);
+                                        + "3 - Proximo da fila\n"
+                                        + "4 - Verificar proxima consulta ou exame do paciente\n"
+                                        + "5 - Marcar Exame"
+                                        + "6 - Marcar consulta", "Menu Atendente Logado",3);
                                 }
                             default:
                                 opcaoAtendente = null;
+                                
                                 
                         }
                         opcaoAtendente = mostraInput("Selecione a opção desejada:\n"
@@ -316,6 +354,9 @@ public class SisClinica {
                     break;
                 default:
                     mostraMensagem("Opção Inválida x2!","Erro",0);
+                    if(cargo == null){
+                        SalvarDados.salvarDados(clinica);
+                    }
                     break;
             }
             cargo = JOptionPane.showInputDialog("Digite a opção que descreve seu cargo:\n"

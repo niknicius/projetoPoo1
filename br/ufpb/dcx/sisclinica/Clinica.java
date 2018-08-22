@@ -14,6 +14,7 @@ import br.ufpb.dcx.sisclinica.exceptions.MedicoNaoExisteException;
 import br.ufpb.dcx.sisclinica.exceptions.PacienteJaEstaNaFilaException;
 import br.ufpb.dcx.sisclinica.exceptions.PacienteJaExisteException;
 import br.ufpb.dcx.sisclinica.exceptions.PacienteNaoExisteException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ import java.util.List;
  *
  * @author nikni
  */
-public class Clinica {
+public class Clinica implements Serializable{
     
     private String nome;
     private List<Paciente> pacientes;
