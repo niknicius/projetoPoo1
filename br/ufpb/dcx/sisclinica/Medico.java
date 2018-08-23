@@ -4,14 +4,14 @@ public class Medico implements Funcionario {
 
     private String nome;
     private String especialidade;
-    private String crm;
+    private int crm;
     private String cpf;
     private int salaDeAtendimento;
     private double salario;
     private boolean plantao;
     private final int nivelDeAcesso;
 
-    public Medico(String nome, String especialidade, String crm,
+    public Medico(String nome, String especialidade, int crm,
             String cpf, int salaDeAtendimento, double salario, boolean plantao) {
         this.setNome(nome);
         this.setEspecialidade(especialidade);
@@ -40,11 +40,11 @@ public class Medico implements Funcionario {
         this.especialidade = especialidade;
     }
 
-    public String getCrm() {
+    public int getCrm() {
         return crm;
     }
 
-    public void setCrm(String crm) {
+    public void setCrm(int crm) {
         this.crm = crm;
     }
 

@@ -55,7 +55,7 @@ public class SisClinica {
                             case "1":
                                 String nomeMedicoCadastrar = mostraInput("Digite seu nome completo","Cadastrando novo médico",3);
                                 String especialidadeMedicoCadastrar = mostraInput("Digite sua especialidade","Cadastrando novo médico",3);
-                                String crmMedicoCadastrar = mostraInput("Digite seu CRM completo","Cadastrando novo médico",3);
+                                int crmMedicoCadastrar = Integer.parseInt(mostraInput("Digite seu CRM completo","Cadastrando novo médico",3));
                                 String cpfMedicoCadastrar = mostraInput("Digite seu CPF completo","Cadastrando novo médico",3);
                                 boolean salaValida = false;
                                 int salaAtendimentoMedicoCadastrar = 0;
