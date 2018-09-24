@@ -14,5 +14,5 @@ Código construido em Java e com utilização da classe JOptionPane para interfa
 - @github/niknicius (Vinnicius Santos)
 - @github/amandaPer (Amanda Pereira)
 - @github/enosTeteo (Enos Teteo)
-- @github/tulio700 (Tulio Prestelo
+- @github/tulio700 (Tulio Prestrelo)
 - @github/eduardopessoa89 (Eduardo Nascimento)
